@@ -16,5 +16,17 @@ const ProfesorModel = {
             cedula, nombre, apellido)
             VALUES (?, ?, ?)`, [profesor]);
             return result.insertId;
+    },
+
+    updateProfesor: async (id, profesor) => {
+        const [result] = await db.query(`UPDATE profesores SET
+            cedula = ?, nombre = ?, apellido = ?
+            WHERE id = ?`, [profesor.cedula, profesor.nombre, profesor.apellido, id]);
+            return result.affectedRows;
+    },
+
+    deleteProfesor: async (id) => {
+        const [result] = await db.query('DELETE FROM profesores WHERE id = ?', [id]);
+        return result.affectedRows;
     }
 }
