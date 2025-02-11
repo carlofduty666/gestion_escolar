@@ -71,4 +71,4 @@ const estudianteController = { // crea un objeto con los métodos del controlado
 
 
 
-module.exports = estudianteController;
+module.exports = estudianteController; // exporta el objeto con los métodos del controlador
