@@ -3,7 +3,8 @@ const cors = require('cors');
 const { db } = require('./db');
 const app = express();
 
-const estudiantesController = require('./controllers/estudiantes.controller');
+// Import routes instead of controller
+const estudiantesRoutes = require('./routes/estudiantes.routes');
 
 app.use(cors());
 app.use(express.json());
@@ -12,7 +13,7 @@ app.get('/', (req, res) => {
   res.send('Bienvenido al sistema escolar!');
 });
 
-app.use('/estudiantes', estudiantesController);
+app.use('/estudiantes', estudiantesRoutes);
 
 db.connect((error) => {
   if (error) {

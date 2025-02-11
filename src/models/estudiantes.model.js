@@ -8,6 +8,28 @@ const Estudiantes = {
     getEstudianteById: function(id, callback) {
         const consulta = 'SELECT * FROM estudiantes WHERE id = ?';
         return db.query(consulta, [id], callback);
+    },
+    createEstudiante: function(estudiante, callback) {
+        const consulta = `INSERT INTO estudiantes (nombres, apellidos, fecha_nacimiento, edad, cedula, direccion, telefono, correo, notas_adicionales) VALUES (?, ?, STR_TO_DATE(REPLACE(?, '/', '-'), '%d-%m-%Y'), ?, ?, ?, ?, ?, ?)`;
+        return db.query(consulta, [
+            estudiante.nombres,
+            estudiante.apellidos,
+            estudiante.fecha_nacimiento,
+            estudiante.edad,
+            estudiante.cedula,
+            estudiante.direccion,
+            estudiante.telefono,
+            estudiante.correo,
+            estudiante.notas_adicionales
+        ], callback);
+    },
+    updateEstudianet: function(estudiante, callback) {
+        const consulta = `UPDATE estudiantes SET nombres = ?, apellidos = ?, fecha_nacimiento = STR_TO_DATE(REPLACE(?, '/', '-'), '%d-%m-%Y'), edad = ?, cedula = ?, direccion = ?, telefono = ?, correo = ?, notas_adicionales = ? WHERE id = ?`;
+        return db.query(consulta, callback)
+    },
+    deleteEstudiante: function(id, callback) {
+        const consulta = 'DELETE FROM estudiantes WHERE id = ?';
+        return db.query(consulta, [id], callback);
     }
 };
 
