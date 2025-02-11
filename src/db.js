@@ -1,10 +1,10 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const dotenv = require('dotenv');
 
 dotenv.config(); // carga las variables de entorno desde el archivo .env
 
 const pool = mysql.createPool({ // un pool es una colección de conexiones que se pueden reutilizar
-  connectionLimit: 10, // limita el número de conexiones simultáneas
+  connectionLimit: 100, // limita el número de conexiones simultáneas
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
