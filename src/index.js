@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   res.send('Bienvenido al sistema escolar!');
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port: http://localhost:${PORT}`);
 });
