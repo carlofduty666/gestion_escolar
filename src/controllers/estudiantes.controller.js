@@ -14,9 +14,9 @@ const getAllEstudiantes = (req, res) => {
 };
 
 const getEstudianteById = (req, res) => {
-    let id = req.params.id;
+    let id_estudiante = req.params.id_estudiante;
     
-    Estudiantes.getEstudianteById(id, (err, result) => {
+    Estudiantes.getEstudianteById(id_estudiante, (err, result) => {
         if (err || !result[0]) {
             console.error('Error al buscar estudiante por ID:', err);
             return res.status(404).send({ message: `No se encontró estudiante con ID ${id}` });
@@ -48,13 +48,25 @@ const updateEstudiante = (req, res) => {
     })
 }
 
+const deleteEstudiante = (req, res) => {
+    let id_estudiante = req.params.id_estudiante;
+    Estudiantes.deleteEstudiante(id_estudiante, (err, result) => {
+        if (err) {
+            console.error('Error al eliminar estudiante:', err);
+            return res.status(500).send(err);
+        }
+        res.send({ message: 'Estudiante eliminado' });
+    })
+}
+
 
  
 module.exports = {
     getAllEstudiantes,
     getEstudianteById,
     createEstudiante,
-    updateEstudiante
+    updateEstudiante,
+    deleteEstudiante
 };
 
 
