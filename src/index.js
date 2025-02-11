@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./db');
-const estudianteRoutes = require('./routes/estudiantes.routes');
-
+const { db } = require('./db');
 const app = express();
+
+const estudiantesController = require('./controllers/estudiantes.controller');
 
 app.use(cors());
 app.use(express.json());
@@ -12,9 +12,15 @@ app.get('/', (req, res) => {
   res.send('Bienvenido al sistema escolar!');
 });
 
-app.use('/estudiantes', estudianteRoutes);
+app.use('/estudiantes', estudiantesController);
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Server is running on port: http://localhost:${PORT}`);
+db.connect((error) => {
+  if (error) {
+      console.log('Error de conexion')
+      return;
+  }
+  console.log('Conexión exitosa a la base de datos');
+  app.listen(9999, () => {
+      console.log('Servidor corriendo en: http://localhost:9999')
+  })
 });
