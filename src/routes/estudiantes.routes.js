@@ -9,6 +9,8 @@ router.get('/id/:id', estudiantesControllerFunctions.getEstudianteById);
 
 router.post('/', estudiantesControllerFunctions.createEstudiante);
 
+router.put('/', estudiantesControllerFunctions.updateEstudiante);
+
 
 // router.get('/nombre/:nombre', estudiantesControllerFunctions.getEstudianteByNombre);
 
