@@ -1,7 +1,6 @@
 const { Estudiantes } = require('../models/estudiantes.model');
 
 
-// Remove the router creation from controller
 const getAllEstudiantes = (req, res) => {
     Estudiantes.getAllEstudiantes((err, results) => {
         if (err) {
@@ -59,8 +58,6 @@ const deleteEstudiante = (req, res) => {
     })
 }
 
-
- 
 module.exports = {
     getAllEstudiantes,
     getEstudianteById,
