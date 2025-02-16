@@ -1,32 +1,39 @@
-const db  = require('../db');
+const { db } = require('../db');
 
-const ProfesorModel = {
-    getAllProfesores: async () => {
-        const [filas] = await db.query('SELECT * FROM profesores');
-        return filas;
+const Profesores = {
+    getAllProfesores: function(callback) {
+        const consulta = 'SELECT * FROM profesores';
+        return db.query(consulta, callback);
     },
-
-    getProfesorById: async (id) => {
-        const [filas] = await db.query('SELECT * FROM profesores WHERE id = ?', [id]);
-        return filas[0];
+    getProfesorById: function(id_profesor, callback) {
+        const consulta = 'SELECT * FROM profesores WHERE id_profesor = ?';
+        return db.query(consulta, [id_profesor], callback);
     },
-
-    createProfesor: async (profesor) => {
-        const [result] = await db.query(`INSERT INTO profesores (
-            cedula, nombre, apellido)
-            VALUES (?, ?, ?)`, [profesor]);
-            return result.insertId;
+    createProfesor: function(profesor, callback) {
+        const consulta = `INSERT INTO profesores (cedula, nombre, apellido) VALUES (?, ?, ?)`;
+        return db.query(consulta, [
+            profesor.cedula,
+            profesor.nombre,
+            profesor.apellido
+        ], callback);
     },
-
-    updateProfesor: async (id, profesor) => {
-        const [result] = await db.query(`UPDATE profesores SET
-            cedula = ?, nombre = ?, apellido = ?
-            WHERE id = ?`, [profesor.cedula, profesor.nombre, profesor.apellido, id]);
-            return result.affectedRows;
+    updateEstudiante: function(profesor, callback) {
+        const consulta = `UPDATE profesores SET 
+            cedula = ?,
+            nombre = ?,
+            apellido = ?
+            WHERE id_profesor = ?`;
+    
+        return db.query(consulta, [
+            profesor.cedula,
+            profesor.nombre,
+            profesor.apellido
+        ], callback);
     },
-
-    deleteProfesor: async (id) => {
-        const [result] = await db.query('DELETE FROM profesores WHERE id = ?', [id]);
-        return result.affectedRows;
+    deleteEstudiante: function(id_profesor, callback) {
+        const consulta = 'DELETE FROM profesores WHERE id_profesor = ?';
+        return db.query(consulta, [id_profesor], callback);
     }
-}
+};
+
+module.exports = { Profesores }

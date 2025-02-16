@@ -5,6 +5,7 @@ const app = express();
 
 // Import routes instead of controller
 const estudiantesRoutes = require('./routes/estudiantes.routes');
+const profesoresRoutes = require('./routes/profesores.routes');
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/estudiantes', estudiantesRoutes);
+
+app.use('/profesores', require('./routes/profesores.routes'));
 
 db.connect((error) => {
   if (error) {
