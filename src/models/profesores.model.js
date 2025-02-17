@@ -9,6 +9,10 @@ const Profesores = {
         const consulta = 'SELECT * FROM profesores WHERE id_profesor = ?';
         return db.query(consulta, [id_profesor], callback);
     },
+    getProfesorByName: function(nombre, callback) {
+        const consulta = 'SELECT * FROM profesores WHERE nombre = ?';
+        return db.query(consulta, [nombre], callback);
+    },
     createProfesor: function(profesor, callback) {
         const consulta = `INSERT INTO profesores (cedula, nombre, apellido) VALUES (?, ?, ?)`;
         return db.query(consulta, [
@@ -17,7 +21,7 @@ const Profesores = {
             profesor.apellido
         ], callback);
     },
-    updateEstudiante: function(profesor, callback) {
+    updateProfesor: function(profesor, callback) {
         const consulta = `UPDATE profesores SET 
             cedula = ?,
             nombre = ?,
@@ -30,7 +34,7 @@ const Profesores = {
             profesor.apellido
         ], callback);
     },
-    deleteEstudiante: function(id_profesor, callback) {
+    deleteProfesor: function(id_profesor, callback) {
         const consulta = 'DELETE FROM profesores WHERE id_profesor = ?';
         return db.query(consulta, [id_profesor], callback);
     }

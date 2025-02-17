@@ -1,7 +1,8 @@
 const { Profesores } = require('../models/profesores.model');
+const { get } = require('../routes/estudiantes.routes');
 
 const getAllProfesores = (req, res) => {
-    Estudiantes.getAllProfesores((err, results) => {
+    Profesores.getAllProfesores((err, results) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
             res.status(500).send(err);
@@ -17,7 +18,19 @@ const getProfesorById = (req, res) => {
     Profesores.getProfesorById(id_profesor, (err, result) => {
         if (err || !result[0]) {
             console.error('Error al buscar profesor por ID:', err);
-            return res.status(404).send({ message: `No se encontró profesor con ID ${id}` });
+            return res.status(404).send({ message: `No se encontró profesor con ID ${id_profesor}` });
+        }
+        res.send(result[0]);
+    })
+};
+
+const getProfesorByName = (req, res) => {
+    let nombre = req.params.nombre;
+
+    Profesores.getProfesorByName(nombre, (err, result) => {
+        if (err || !result[0]) {
+            console.error('Error al buscar profesor por nombre:', err);
+            return res.status(404).send({ message: `No se encontró profesor con el nombre: ${nombre}` });
         }
         res.send(result[0]);
     })
@@ -60,6 +73,7 @@ const deleteProfesor = (req, res) => {
 module.exports = {
     getAllProfesores,
     getProfesorById,
+    getProfesorByName,
     createProfesor,
     updateProfesor,
     deleteProfesor

@@ -7,16 +7,19 @@ const app = express();
 const estudiantesRoutes = require('./routes/estudiantes.routes');
 const profesoresRoutes = require('./routes/profesores.routes');
 
+
 app.use(cors());
 app.use(express.json());
+
 
 app.get('/', (req, res) => {
   res.send('Bienvenido al sistema escolar!');
 });
 
-app.use('/estudiantes', estudiantesRoutes);
 
-app.use('/profesores', require('./routes/profesores.routes'));
+app.use('/estudiantes', estudiantesRoutes);
+app.use('/profesores', profesoresRoutes);
+
 
 db.connect((error) => {
   if (error) {
@@ -24,7 +27,7 @@ db.connect((error) => {
       return;
   }
   console.log('Conexión exitosa a la base de datos');
-  app.listen(9999, () => {
-      console.log('Servidor corriendo en: http://localhost:9999')
+  app.listen(9997, () => {
+      console.log('Servidor corriendo en: http://localhost:9997')
   })
 });

@@ -18,7 +18,7 @@ const getEstudianteById = (req, res) => {
     Estudiantes.getEstudianteById(id_estudiante, (err, result) => {
         if (err || !result[0]) {
             console.error('Error al buscar estudiante por ID:', err);
-            return res.status(404).send({ message: `No se encontró estudiante con ID ${id}` });
+            return res.status(404).send({ message: `No se encontró estudiante con ID ${id_estudiante}` });
         }
         res.send(result[0]);
     });

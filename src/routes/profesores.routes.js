@@ -5,8 +5,13 @@ const profesoresControllerFunctions = require('../controllers/profesores.control
 router.get('/', profesoresControllerFunctions.getAllProfesores);
 
 router.get('/id/:id_profesor', profesoresControllerFunctions.getProfesorById);
+
+router.get('/nombre/:nombre', profesoresControllerFunctions.getProfesorByName);
+
 router.post('/', profesoresControllerFunctions.createProfesor);
+
 router.put('/', profesoresControllerFunctions.updateProfesor);
+
 router.delete('/id/:id_profesor', profesoresControllerFunctions.deleteProfesor);
 
 module.exports = router;
