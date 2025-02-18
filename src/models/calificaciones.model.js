@@ -64,9 +64,9 @@ const Calificaciones = {
         ], callback);
     },
 
-    updateCalificacion: function(nota, id_estudiante, id_materia, id_evaluacion, callback) {
+    updateCalificacion: function(id_estudiante, id_materia, id_evaluacion, nota, callback) {
         const consulta = 'UPDATE calificaciones SET nota = ? WHERE id_estudiante = ? AND id_materia = ? AND id_evaluacion = ?';
-        return db.query(consulta, [nota, id_estudiante, id_materia, id_evaluacion], callback);
+        return db.query(consulta, [id_estudiante, id_materia, id_evaluacion, nota], callback);
     },
     deleteCalificacion: function(id_estudiante, id_materia, id_evaluacion, callback) {
         const consulta = 'DELETE FROM calificaciones WHERE id_estudiante = ? AND id_materia = ? AND id_evaluacion = ?'

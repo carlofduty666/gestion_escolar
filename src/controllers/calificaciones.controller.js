@@ -154,8 +154,8 @@ const createCalificacion = (req, res) => {
 };
 
 const updateCalificacion = (req, res) => {
-    const { id_calificacion, nota, id_estudiante, id_materia, id_evaluacion } = req.body;
-    Calificaciones.updateCalificacion(id_calificacion, nota, id_estudiante, id_materia, id_evaluacion, (err, result) => {
+    const calificacion = req.body;
+    Calificaciones.updateCalificacion(calificacion, (err, result) => {
         if (err) {
             console.error('Error al actualizar calificación:', err);
             return res.status(500).send({ message: 'Error al actualizar calificación' });
@@ -163,6 +163,32 @@ const updateCalificacion = (req, res) => {
         res.send({ message: 'Calificación actualizada exitosamente' });
     });
 };
+
+// const createCalificacion = (req, res) => {
+//     const { id_estudiante, id_materia, id_evaluacion, nota } = req.body;
+    
+//     Calificaciones.createCalificacion(id_estudiante, id_materia, id_evaluacion, nota, (err, result) => {
+//         if (err) {
+//             console.error('Error al crear calificación:', err);
+//             return res.status(500).send(err);
+//         }
+//         res.status(201).send({ 
+//             message: 'Calificación creada exitosamente',
+//             id: result.insertId 
+//         });
+//     });
+// };
+
+// const updateCalificacion = (req, res) => {
+//     const { id_calificacion, id_estudiante, id_materia, id_evaluacion, nota } = req.body;
+//     Calificaciones.updateCalificacion(id_calificacion, id_estudiante, id_materia, id_evaluacion, nota, (err, result) => {
+//         if (err) {
+//             console.error('Error al actualizar calificación:', err);
+//             return res.status(500).send({ message: 'Error al actualizar calificación' });
+//         }
+//         res.send({ message: 'Calificación actualizada exitosamente' });
+//     });
+// };
 
 const deleteCalificacion = (req, res) => {
     let id_calificacion = req.params.id_calificacion;
