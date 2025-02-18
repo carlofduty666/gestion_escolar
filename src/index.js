@@ -6,6 +6,7 @@ const app = express();
 // Import routes instead of controller
 const estudiantesRoutes = require('./routes/estudiantes.routes');
 const profesoresRoutes = require('./routes/profesores.routes');
+const representantesRoutes = require('./routes/representantes.routes');
 
 
 app.use(cors());
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.use('/estudiantes', estudiantesRoutes);
 app.use('/profesores', profesoresRoutes);
+app.use('/representantes', representantesRoutes);
 
 
 db.connect((error) => {

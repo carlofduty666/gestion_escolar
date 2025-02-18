@@ -8,7 +8,7 @@ const getAllEstudiantes = (req, res) => {
             res.status(500).send(err);
             return;
         }
-        res.send({ users: results });
+        res.send({ estudiantes: results });
     });
 };
 
