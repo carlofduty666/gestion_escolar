@@ -1,14 +1,14 @@
 const { Users } = require('../models/usuarios.model');
 
 const getAllUser = (req, res) => {
-    Users.getAllUsers((err, result => {
+    Users.getAllUsers((err, result) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
             res.status(500).send(err);
             return;
         }
         res.send({ users: result });
-    }))
+    })
 };
 
 const getUserById = (req, res) => {
@@ -28,13 +28,13 @@ const createUser = (req, res) => {
 
     const newUser = req.body;
 
-    Users.createUser(newUser, (err, result => {
+    Users.createUser(newUser, (err, result) => {
         if (err) {
             console.error('Error al crear usuario:', err);
             return res.status(500).send(err);
         }
         res.status(201).send({ message: 'Usuario creado', id: result.insertId });
-    }))
+    })
 };
 
 const updateUser = (req, res) => {
