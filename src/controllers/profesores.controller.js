@@ -1,5 +1,4 @@
 const { Profesores } = require('../models/profesores.model');
-const { get } = require('../routes/estudiantes.routes');
 
 const getAllProfesores = (req, res) => {
     Profesores.getAllProfesores((err, results) => {
