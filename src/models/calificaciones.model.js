@@ -22,7 +22,7 @@ const Calificaciones = {
         return db.query(consulta, [id_estudiante, id_materia], callback);
     },
     getCalificacionEstudianteEvaluacion: function(id_estudiante, id_evaluacion, callback) {
-        const consulta = 'SELECT * FROM calificaciones WHERE id_estudiante = ? AND id_evaluacion = ?'
+        const consulta = 'SELECT * FROM calificaciones WHERE id_estudiante = ? AND id_evaluacion = ?';
         return db.query(consulta, [id_estudiante, id_evaluacion], callback);
     },
     getcalificacionEvaluacionMateria: function(id_evaluacion, id_materia, callback) {
@@ -35,7 +35,7 @@ const Calificaciones = {
     },
         // Get average grade per student
     getPromedioEstudiante: function(id_estudiante, callback) {
-        const consulta = 'SELECT id_estudiante, AVG(calificacion) as promedio FROM calificaciones WHERE id_estudiante = ? GROUP BY id_estudiante';
+        const consulta = 'SELECT id_estudiante, AVG(nota) as promedio FROM calificaciones WHERE id_estudiante = ? GROUP BY id_estudiante';
         return db.query(consulta, [id_estudiante], callback);
     },
     // Get top performing students
@@ -55,22 +55,20 @@ const Calificaciones = {
     },
 
     createCalificacion: function(calificacion, callback) {
-        const consulta = 'INSERT INTO calificaciones (id_estudiante, id_materia, id_evaluacion, nota) VALUES (?, ?, ?, ?)';
+        const consulta = 'INSERT INTO calificaciones (id_estudiante, id_evaluacion, nota) VALUES (?, ?, ?, ?)';
         db.query(consulta, [
             calificacion.id_estudiante,
-            calificacion.id_materia,
             calificacion.id_evaluacion,
             calificacion.nota
         ], callback);
     },
-
-    updateCalificacion: function(id_estudiante, id_materia, id_evaluacion, nota, callback) {
-        const consulta = 'UPDATE calificaciones SET nota = ? WHERE id_estudiante = ? AND id_materia = ? AND id_evaluacion = ?';
-        return db.query(consulta, [id_estudiante, id_materia, id_evaluacion, nota], callback);
+    updateCalificacion: function(id_estudiante, id_evaluacion, nota, callback) {
+        const consulta = 'UPDATE calificaciones SET nota = ? WHERE id_estudiante = ? AND id_evaluacion = ?';
+        return db.query(consulta, [nota, id_estudiante, id_evaluacion], callback);
     },
-    deleteCalificacion: function(id_estudiante, id_materia, id_evaluacion, callback) {
-        const consulta = 'DELETE FROM calificaciones WHERE id_estudiante = ? AND id_materia = ? AND id_evaluacion = ?'
-        return db.query(consulta, [id_estudiante, id_materia, id_evaluacion], callback);
+    deleteCalificacion: function(id_estudiante, id_evaluacion, callback) {
+        const consulta = 'DELETE FROM calificaciones WHERE id_estudiante = ? AND id_evaluacion = ?';
+        return db.query(consulta, [id_estudiante, id_evaluacion], callback);
     }
 }
 

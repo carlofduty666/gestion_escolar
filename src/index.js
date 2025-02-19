@@ -11,6 +11,7 @@ const usersRoutes = require('./routes/usuarios.routes');
 const nivelesRoutes = require('./routes/niveles.routes');
 const gradosRoutes = require('./routes/grados.routes');
 const calificacionesRoutes = require('./routes/calificaciones.routes');
+const materiasRoutes = require('./routes/materias.routes');
 
 app.use(cors());
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use('/users', usersRoutes);
 app.use('/niveles', nivelesRoutes);
 app.use('/grados', gradosRoutes);
 app.use(calificacionesRoutes);
+app.use('/materias', materiasRoutes);
 
 
 db.connect((error) => {
